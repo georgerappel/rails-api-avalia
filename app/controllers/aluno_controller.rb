@@ -1,0 +1,2 @@
+class AlunoController < ApplicationController
+end

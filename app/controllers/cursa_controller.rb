@@ -1,0 +1,2 @@
+class CursaController < ApplicationController
+end

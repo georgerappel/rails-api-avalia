@@ -1,0 +1,2 @@
+class DisciplinaPeriodoController < ApplicationController
+end
