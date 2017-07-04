@@ -6,6 +6,6 @@ class CreateDocentes < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :docentes, :matricula
+    add_index :docentes, :matricula, unique: true
   end
 end

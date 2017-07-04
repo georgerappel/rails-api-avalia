@@ -6,6 +6,6 @@ class CreateDisciplinas < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :disciplinas, :codigo
+    add_index :disciplinas, :codigo, unique: true
   end
 end

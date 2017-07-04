@@ -1,6 +1,4 @@
 class Cursa < ApplicationRecord
-  belongs_to :aluno
-  belongs_to :disciplinaPeriodo
-
-  has_one :avaliacao
+  #TODO referencia chave estrangeira
+  #has_one :avaliacao
 end

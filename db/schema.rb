@@ -10,48 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625222646) do
+ActiveRecord::Schema.define(version: 20170625222446) do
 
   create_table "alunos", force: :cascade do |t|
     t.string "dre"
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dre"], name: "index_alunos_on_dre"
+    t.index ["dre"], name: "index_alunos_on_dre", unique: true
   end
 
   create_table "avaliacaos", force: :cascade do |t|
-    t.integer "aluno_id"
-    t.integer "disciplinaPeriodo_id"
+    t.integer "aluno_dre_id"
+    t.integer "disciplina_periodo_id_id"
     t.string "comentario"
     t.boolean "status"
-    t.datetime "data"
-    t.datetime "dataAlteracao"
     t.float "nota"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aluno_id"], name: "index_avaliacaos_on_aluno_id"
-    t.index ["disciplinaPeriodo_id"], name: "index_avaliacaos_on_disciplinaPeriodo_id"
+    t.index ["aluno_dre_id"], name: "index_avaliacaos_on_aluno_dre_id"
+    t.index ["disciplina_periodo_id_id"], name: "index_avaliacaos_on_disciplina_periodo_id_id"
+    t.index [nil, nil], name: "index_avaliacaos_on_aluno_dre_and_disciplina_periodo_id", unique: true
   end
 
   create_table "cursas", force: :cascade do |t|
-    t.integer "aluno_id"
-    t.integer "disciplinaPeriodo_id"
+    t.integer "aluno_dre_id"
+    t.integer "disciplina_periodo_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aluno_id"], name: "index_cursas_on_aluno_id"
-    t.index ["disciplinaPeriodo_id"], name: "index_cursas_on_disciplinaPeriodo_id"
+    t.index ["aluno_dre_id"], name: "index_cursas_on_aluno_dre_id"
+    t.index ["disciplina_periodo_id_id"], name: "index_cursas_on_disciplina_periodo_id_id"
+    t.index [nil, nil], name: "index_cursas_on_aluno_dre_and_disciplina_periodo_id", unique: true
   end
 
   create_table "disciplina_periodos", force: :cascade do |t|
-    t.integer "docente_id"
-    t.integer "disciplina_id"
+    t.string "docente_matricula"
+    t.string "disciplina_codigo"
     t.string "periodo", limit: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["disciplina_id"], name: "index_disciplina_periodos_on_disciplina_id"
-    t.index ["docente_id"], name: "index_disciplina_periodos_on_docente_id"
-    t.index ["id"], name: "index_disciplina_periodos_on_id"
+    t.index ["docente_matricula", "disciplina_codigo", "periodo"], name: "index_disciplina_periodos_all", unique: true
   end
 
   create_table "disciplinas", force: :cascade do |t|
@@ -59,7 +57,7 @@ ActiveRecord::Schema.define(version: 20170625222646) do
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["codigo"], name: "index_disciplinas_on_codigo"
+    t.index ["codigo"], name: "index_disciplinas_on_codigo", unique: true
   end
 
   create_table "docentes", force: :cascade do |t|
@@ -67,25 +65,7 @@ ActiveRecord::Schema.define(version: 20170625222646) do
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["matricula"], name: "index_docentes_on_matricula"
-  end
-
-  create_table "etiqueta", force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "aluno_id"
-    t.integer "disciplinaPeriodo_id"
-    t.integer "valor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["aluno_id"], name: "index_etiqueta_on_aluno_id"
-    t.index ["disciplinaPeriodo_id"], name: "index_etiqueta_on_disciplinaPeriodo_id"
-    t.index ["tag_id"], name: "index_etiqueta_on_tag_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "nome", limit: 20
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["matricula"], name: "index_docentes_on_matricula", unique: true
   end
 
 end

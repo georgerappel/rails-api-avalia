@@ -6,6 +6,6 @@ class CreateAlunos < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :alunos, :dre
+    add_index :alunos, :dre, unique: true
   end
 end

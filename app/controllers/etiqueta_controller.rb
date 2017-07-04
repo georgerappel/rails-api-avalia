@@ -1,2 +1,0 @@
-class EtiquetaController < ApplicationController
-end

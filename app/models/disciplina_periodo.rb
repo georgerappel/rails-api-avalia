@@ -1,4 +1,3 @@
 class DisciplinaPeriodo < ApplicationRecord
-  belongs_to :docente
-  belongs_to :disciplina
+  #TODO referencia chave estrangeira. (belongs_to talvez?)
 end
