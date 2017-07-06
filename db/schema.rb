@@ -21,32 +21,28 @@ ActiveRecord::Schema.define(version: 20170625222446) do
   end
 
   create_table "avaliacaos", force: :cascade do |t|
-    t.integer "aluno_dre_id"
-    t.integer "disciplina_periodo_id_id"
+    t.string "aluno_dre"
+    t.integer "disciplina_periodo_id"
     t.string "comentario"
     t.boolean "status"
     t.float "nota"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aluno_dre_id"], name: "index_avaliacaos_on_aluno_dre_id"
-    t.index ["disciplina_periodo_id_id"], name: "index_avaliacaos_on_disciplina_periodo_id_id"
-    t.index [nil, nil], name: "index_avaliacaos_on_aluno_dre_and_disciplina_periodo_id", unique: true
+    t.index ["aluno_dre", "disciplina_periodo_id"], name: "index_avaliacaos_on_aluno_dre_and_disciplina_periodo_id", unique: true
   end
 
   create_table "cursas", force: :cascade do |t|
-    t.integer "aluno_dre_id"
-    t.integer "disciplina_periodo_id_id"
+    t.string "aluno_dre"
+    t.integer "disciplina_periodo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aluno_dre_id"], name: "index_cursas_on_aluno_dre_id"
-    t.index ["disciplina_periodo_id_id"], name: "index_cursas_on_disciplina_periodo_id_id"
-    t.index [nil, nil], name: "index_cursas_on_aluno_dre_and_disciplina_periodo_id", unique: true
+    t.index ["aluno_dre", "disciplina_periodo_id"], name: "index_cursas_on_aluno_dre_and_disciplina_periodo_id", unique: true
   end
 
   create_table "disciplina_periodos", force: :cascade do |t|
     t.string "docente_matricula"
     t.string "disciplina_codigo"
-    t.string "periodo", limit: 6
+    t.string "periodo", limit: 6, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["docente_matricula", "disciplina_codigo", "periodo"], name: "index_disciplina_periodos_all", unique: true

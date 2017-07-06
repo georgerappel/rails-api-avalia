@@ -1,14 +1,36 @@
 class CursaController < ApplicationController
   #TODO Concluir metodos e deixar remover
-  # GET /alunos
+  before_action :set_cursa, only: [:destroy]
+
+  # GET /aluno/:aluno_dre/cursa
   def index
-    @alunos = Aluno.all
-    json_response(@alunos)
+    #TODO Receber parametro ?avaliado=0 para filtrar as que ainda faltam ser avaliadas
+    @cursa = Cursa.where(aluno_dre: params[:aluno_dre]).all
+    json_response(@cursa)
   end
 
-  # POST /alunos
+  # POST /alunos/:aluno_dre/cursa
   def create
-    @aluno = Aluno.create!(aluno_params)
-    json_response(@aluno, :created)
+    @cursa = Cursa.create!(cursa_params)
+    json_response(@cursa, :created)
   end
+
+  # DELETE /alunos/:aluno_dre/cursa/:disciplina_periodo_id
+  def destroy
+    if @cursa != nil
+      @cursa.destroy
+    end
+    head :no_content
+  end
+
+  private
+
+  def cursa_params
+    params.permit(:aluno_dre, :disciplina_periodo_id)
+  end
+
+  def set_cursa
+    @cursa = Cursa.find_by(aluno_dre: params[:aluno_dre], disciplina_periodo_id: params[:disciplina_periodo_id])
+  end
+
 end
