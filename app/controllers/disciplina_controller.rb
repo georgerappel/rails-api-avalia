@@ -5,7 +5,7 @@ class DisciplinaController < ApplicationController
   def index
     if params[:q]
       @query = params[:q]
-      @disciplinas = Disciplina.where('codigo LIKE %?% OR nome LIKE %?%', @query, @query)
+      @disciplinas = Disciplina.where("codigo LIKE '%#{@query}%' or nome LIKE '%#{@query}%'")
     else
       @disciplinas = Disciplina.all
     end
