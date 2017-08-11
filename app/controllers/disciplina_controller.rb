@@ -4,8 +4,8 @@ class DisciplinaController < ApplicationController
   # GET /disciplina
   def index
     if params[:q]
-      @query = params[:q].first
-      @disciplinas = Disciplina.where('codigo = ? OR nome = ?', @query, @query)
+      @query = params[:q]
+      @disciplinas = Disciplina.where('codigo LIKE %?% OR nome LIKE %?%', @query, @query)
     else
       @disciplinas = Disciplina.all
     end
