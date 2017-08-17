@@ -4,8 +4,8 @@ class DisciplinaController < ApplicationController
   # GET /disciplina
   def index
     if params[:q]
-      @query = params[:q]
-      @disciplinas = Disciplina.where("codigo LIKE '%#{@query}%' or nome LIKE '%#{@query}%'")
+      @query = params[:q].downcase
+      @disciplinas = Disciplina.where("lower(codigo) LIKE '%#{@query}%' or lower(nome) LIKE '%#{@query}%'")
     else
       @disciplinas = Disciplina.all
     end
