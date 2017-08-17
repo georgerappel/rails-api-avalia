@@ -3,7 +3,12 @@ class DocenteController < ApplicationController
 
   # GET /docente
   def index
-    @docentes = Docente.all
+    if params[:q]
+      @query = params[:q].downcase
+      @docentes = Docente.where("lower(nome) LIKE '%#{@query}%'")
+    else
+      @docentes = Docente.all
+    end
     json_response(@docentes)
   end
 
