@@ -4,7 +4,7 @@ class DisciplinaPeriodoController < ApplicationController
   # GET /disciplina_periodo
   def index
     if params[:curso_id]
-      @disciplina_periodos = DisciplinaPeriodo.joins('INNER JOIN disciplinas ON disciplinas.codigo = disciplina_periodos.disciplina_codigo').where('curso = ?', params[:curso_id])
+      @disciplina_periodos = DisciplinaPeriodo.joins('INNER JOIN disciplinas ON disciplinas.codigo = disciplina_periodos.disciplina_codigo').includes(:@disciplina_periodos).where('curso = ?', params[:curso_id])
     else
       @disciplina_periodos = DisciplinaPeriodo.all
     end
