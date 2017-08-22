@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :docente, param: :matricula
   resources :disciplina_periodo
   resources :avaliacao
+  resources :departamento, only: [:index]
+  resources :curso, only: [:index]
 end
