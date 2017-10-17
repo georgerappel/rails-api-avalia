@@ -39,7 +39,7 @@ class DisciplinaController < ApplicationController
   private
 
   def disciplina_params
-    params.permit(:codigo, :nome)
+    params.permit(:codigo, :nome, :curso_id)
   end
 
   def set_disciplina

@@ -35,7 +35,7 @@ class AlunoController < ApplicationController
 
   def aluno_params
     #Parametros aceitos
-    params.permit(:dre, :nome)
+    params.permit(:dre, :nome, :curso_id)
   end
 
   def set_aluno
